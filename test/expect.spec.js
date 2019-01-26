@@ -12,13 +12,13 @@ describe('expect', () => {
     expect(component).toHaveStyleRule('color', 'blue');
   });
 
-  test('toNotHaveStyleRule', () => {
+  xtest('toNotHaveStyleRule', () => {
     const component = ReactTestRenderer.create(<Button />);
     expect(component).toNotHaveStyleRule('text-decoration');
   });
 
   test('toBeAGlobalStyle', () => {
-    expect('body { font-family: \'Roboto\'; }').toBeAGlobalStyle();
+    expect("body { font-family: 'Roboto'; }").toBeAGlobalStyle();
   });
 
   it('toHaveComponent', () => {

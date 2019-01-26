@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import mediaQuery from 'css-mediaquery';
 import getCSS from '../utils/getCSS';
 
-const findClassName = (received) => {
+const findClassName = received => {
   let className = '';
 
   const component = received.component || received;
@@ -15,10 +15,17 @@ const findClassName = (received) => {
   if (typeof component.props === 'function') {
     // enzyme 3
     className = component.props().className;
-  } else if (component.props && (component.props.class || component.props.className)) {
+  } else if (
+    component.props &&
+    (component.props.class || component.props.className)
+  ) {
     // react-test-renderer/shallow
     className = component.props.class || component.props.className;
-  } else if (!component.node && component.constructor && typeof component.toJSON === 'function') {
+  } else if (
+    !component.node &&
+    component.constructor &&
+    typeof component.toJSON === 'function'
+  ) {
     // react-test-renderer
     className = component.toJSON().props.className;
   } else if (component.node) {
@@ -58,7 +65,8 @@ const findClassName = (received) => {
 };
 
 const getCodeInMedia = (code, media) => {
-  const newMedia = media.replace(/\(/g, '\\(')
+  const newMedia = media
+    .replace(/\(/g, '\\(')
     .replace(/\)/g, '\\)')
     .replace(/\s/g, '\\s*');
 
@@ -77,7 +85,9 @@ const getCodeInMedia = (code, media) => {
 const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const getStyleRule = (code, className, selector) => {
-  const styles = new RegExp(`${escapeRegExp(className)}\\s*{([^}]*)`, 'g').exec(code);
+  const styles = new RegExp(`${escapeRegExp(className)}\\s*{([^}]*)`, 'g').exec(
+    code,
+  );
   const capture = new RegExp(`(?:[^\\-]|^)${selector}\\s*:\\s*([^;]+)`, 'g');
 
   const matches = styles && styles[1].match(capture);
@@ -105,11 +115,12 @@ const toHaveStyleRule = (received, selector, expected) => {
 
   const css = getCSS();
 
-  const getMessage = value => `Expected ${selector} matching\n\t${chalk.green(expected)}\nreceived:\n\t${chalk.red(value)}`;
+  const getMessage = value =>
+    `Expected ${selector} matching\n\t${chalk.green(expected)}\nreceived:\n\t${chalk.red(value)}`;
 
   const error = {
     pass: false,
-    message: `Property not found: ${chalk.red(selector)}`,
+    message: () => `Property not found: ${chalk.red(selector)}`,
   };
 
   let code = css;
@@ -132,7 +143,8 @@ const toHaveStyleRule = (received, selector, expected) => {
       medias.push(match[1].trim());
     }
 
-    let values = medias.filter(x => mediaQuery.match(x, media))
+    let values = medias
+      .filter(x => mediaQuery.match(x, media))
       .map(x => getCodeInMedia(code, x))
       .map(x => getStyleRule(x, className, selector));
 
