@@ -9,7 +9,7 @@ describe('jest', () => {
     expect(component).toHaveStyleRule('color', 'blue');
   });
 
-  xtest('toNotHaveStyleRule', () => {
+  test('toNotHaveStyleRule', () => {
     const component = ReactTestRenderer.create(<Button />);
     expect(component).toNotHaveStyleRule('text-decoration');
   });

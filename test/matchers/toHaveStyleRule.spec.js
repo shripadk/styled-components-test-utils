@@ -61,7 +61,7 @@ describe('toHaveStyleRule', () => {
   test('should pass if properties are equal', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'blue',
@@ -74,7 +74,7 @@ describe('toHaveStyleRule', () => {
   test('should fail if properties are different', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color', 'red');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'red',
         received: 'blue',
@@ -95,7 +95,7 @@ describe('toHaveStyleRule', () => {
     // should not match backgrund-color: red;
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color', 'red');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         received: 'blue',
         selector: 'color',
@@ -108,7 +108,7 @@ describe('toHaveStyleRule', () => {
   test('should skip whitespaces', () => {
     const component = ReactTestRenderer.create(<ButtonWithSpaces />);
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'blue',
@@ -128,7 +128,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'white',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'white',
         received: 'white',
@@ -146,7 +146,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'black',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'black',
         received: 'black',
@@ -164,7 +164,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'blue',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'white',
@@ -184,7 +184,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'green',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'green',
         received: 'green',
@@ -202,7 +202,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'red',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'red',
         received: 'red',
@@ -222,7 +222,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'black',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'black',
         received: 'black',
@@ -235,7 +235,7 @@ describe('toHaveStyleRule', () => {
   test('should work with react-test-renderer', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'blue',
@@ -250,7 +250,7 @@ describe('toHaveStyleRule', () => {
     renderer.render(<Button />);
     const component = renderer.getRenderOutput();
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'blue',
@@ -263,7 +263,7 @@ describe('toHaveStyleRule', () => {
   test('should work with enzyme shallow rendering', () => {
     const component = shallow(<Button />);
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'blue',
@@ -277,7 +277,7 @@ describe('toHaveStyleRule', () => {
   /* test('should work with enzyme mount', () => {
     const component = mount(<Button />);
     const result = toHaveStyleRule(component, 'color', 'blue');
-    expect(result.message).toEqual(getMessage({
+    expect(result.message()).toEqual(getMessage({
       expected: 'blue',
       received: 'blue',
       selector: 'color',
@@ -291,7 +291,7 @@ describe('toHaveStyleRule', () => {
     `;
     const component = ReactTestRenderer.create(<ExtendedButton />);
     const result = toHaveStyleRule(component, 'color', 'green');
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'green',
         received: 'green',
@@ -304,7 +304,7 @@ describe('toHaveStyleRule', () => {
   test('should support regexp', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color', /blue/);
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: '/blue/',
         received: 'blue',
@@ -330,7 +330,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'white',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'white',
         received: 'white',
@@ -349,7 +349,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'blue',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'blue',
         received: 'white',
@@ -370,7 +370,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'purple',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'purple',
         received: 'purple',
@@ -388,7 +388,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'red',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'red',
         received: 'red',
@@ -406,7 +406,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'pink',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'pink',
         received: 'pink',
@@ -431,7 +431,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'purple',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'purple',
         received: 'purple',
@@ -448,7 +448,7 @@ describe('toHaveStyleRule', () => {
       'background-color',
       'red',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'red',
         received: 'red',
@@ -469,7 +469,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'purple',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'purple',
         received: 'pink',
@@ -489,7 +489,7 @@ describe('toHaveStyleRule', () => {
       'color',
       'purple',
     );
-    expect(result.message).toEqual(
+    expect(result.message()).toEqual(
       getMessage({
         expected: 'purple',
         received: 'white',

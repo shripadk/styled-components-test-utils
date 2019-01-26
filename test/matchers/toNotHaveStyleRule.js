@@ -33,29 +33,30 @@ const Button = styled.button`
 `;
 
 describe('toNotHaveStyleRule', () => {
-  const getMessage = ({
-    selector,
-    value,
-  } = {}) =>
+  const getMessage = ({ selector, value } = {}) =>
     `Expected ${selector} to not exists but received:\n\t${chalk.red(value)}`;
 
   test('should pass if property is not present', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'foo');
-    expect(result.message).toEqual(getMessage({
-      selector: 'foo',
-      value: 'blue',
-    }));
+    expect(result.message()).toEqual(
+      getMessage({
+        selector: 'foo',
+        value: 'blue',
+      }),
+    );
     expect(result.pass).toBeTruthy();
   });
 
   test('should fail if property is present', () => {
     const component = ReactTestRenderer.create(<Button />);
     const result = toHaveStyleRule(component, 'color');
-    expect(result.message).toEqual(getMessage({
-      selector: 'color',
-      value: 'blue',
-    }));
+    expect(result.message()).toEqual(
+      getMessage({
+        selector: 'color',
+        value: 'blue',
+      }),
+    );
     expect(result.pass).toBeTruthy();
   });
 });

@@ -115,7 +115,7 @@ const toHaveStyleRule = (received, selector, expected) => {
 
   const css = getCSS();
 
-  const getMessage = value =>
+  const getMessage = value => () =>
     `Expected ${selector} matching\n\t${chalk.green(expected)}\nreceived:\n\t${chalk.red(value)}`;
 
   const error = {

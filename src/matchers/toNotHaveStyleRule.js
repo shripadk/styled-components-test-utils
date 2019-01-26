@@ -5,7 +5,7 @@ const toNotHaveStyleRule = (received, selector) => {
   const { pass, message, value } = toHaveStyleRule(received, selector, '');
 
   return {
-    pass: !pass && /^Property not found/.test(message),
+    pass: !pass && /^Property not found/.test(message()),
     message: () =>
       `Expected ${selector} to not exists but received:\n\t${chalk.red(value)}`,
   };
