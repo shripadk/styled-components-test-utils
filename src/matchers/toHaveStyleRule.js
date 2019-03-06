@@ -99,7 +99,7 @@ const getStyleRule = (code, className, selector) => {
   return val || '';
 };
 
-const toHaveStyleRule = (received, selector, expected) => {
+const toHaveStyleRule = (_, received, selector, expected) => {
   let className;
 
   if (received.css && received.props) {

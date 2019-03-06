@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 import toHaveStyleRule from './toHaveStyleRule';
 
-const toNotHaveStyleRule = (received, selector) => {
-  const { pass, message, value } = toHaveStyleRule(received, selector, '');
+const toNotHaveStyleRule = (_, received, selector) => {
+  const { pass, message, value } = toHaveStyleRule(_, received, selector, '');
 
   return {
     pass: !pass && /^Property not found/.test(message()),

@@ -9,11 +9,7 @@ export default function injectStyledUtils(expect) {
     extension[x] = function matcher(...params) {
       const test = matchers[x](this.actual, ...params);
 
-      expect.assert(
-        test.pass,
-        test.message,
-      );
-      return this;
+      return { message: test.message, pass: test.pass };
     };
   });
 
